@@ -16,6 +16,7 @@ user_input_form.addEventListener("submit", (e) => {
     user_input_form.reset()
 
     const card = createCard({destinationName, locationName, photoUrl, descr});
+    cards_container.appendChild(card);
 })
 
 function createCard({destinationName, locationName, photoUrl, descr}) {
@@ -42,6 +43,6 @@ function createCard({destinationName, locationName, photoUrl, descr}) {
         <button type="button" class="btn btn-danger">Delete</button>
     </div>
     `;
-    
+
     return card
 }
