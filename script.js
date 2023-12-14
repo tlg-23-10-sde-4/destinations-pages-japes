@@ -24,6 +24,8 @@ cards_container.addEventListener("click", (e) => {
 
     if (clickedElt.getAttribute("btn_type") === "delete") {
         clickedElt.parentElement.parentElement.remove();
+    } else if (clickedElt.getAttribute("btn_type") === "edit") {
+        handleEdit(clickedElt)
     }
     
 })
@@ -54,6 +56,23 @@ function createCard({destinationName, locationName, photoUrl, descr}) {
     `;
 
     return card
+}
+
+function handleEdit(editBtn) {
+    const cardBody = editBtn.parentElement
+    const oldDestName = cardBody.children[0].textContent;
+    const oldLocName = cardBody.children[1].textContent;
+    const oldPhotoUrl = cardBody.previousSiblingElement.getAttribute("src");
+    const oldDesc = cardBody.children[2].tagName === "P" ? cardBody.children[2].textContent : "";
+
+    const newDestName = prompt("Enter new destination name", oldDestName)
+    const newLocName = prompt("Enter new location", oldLocName)
+    const newPhotoUrl = prompt("Enter new destination name", oldPhotoUrl)
+    const newDescName = prompt("Enter new destination name", oldDesc)
+    
+    if (newDestName && newDestName !== oldDestName) {
+        cardBody.children[0].textContent = newDestName
+    }
 }
 
 // cards_container.addEventListener("click", (e) => {
