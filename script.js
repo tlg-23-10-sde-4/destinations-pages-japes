@@ -19,6 +19,15 @@ user_input_form.addEventListener("submit", (e) => {
     cards_container.appendChild(card);
 })
 
+cards_container.addEventListener("click", (e) => {
+    const clickedElt = e.target
+
+    if (clickedElt.getAttribute("btn_type") === "delete") {
+        clickedElt.parentElement.parentElement.remove();
+    }
+    
+})
+
 function createCard({destinationName, locationName, photoUrl, descr}) {
     /*
     <div class="card" style="width: 18rem;">
@@ -39,10 +48,26 @@ function createCard({destinationName, locationName, photoUrl, descr}) {
         <h5 class="card-title">${destinationName}</h5>
         <p class="card-text">${locationName}</p>
         ${descr && `<p class="card-text">${descr}</p>`}
-        <button type="button" class="btn btn-info">Edit</button>
-        <button type="button" class="btn btn-danger">Delete</button>
+        <button type="button" btn_type="edit" class="btn btn-info">Edit</button>
+        <button type="button" btn_type="delete" class="btn btn-danger">Delete</button>
     </div>
     `;
 
     return card
 }
+
+// cards_container.addEventListener("click", (e) => {
+//     const clickedElt = e.target;
+//     if(clickedElt.classList.contains("btn-danger")) {
+//         clickedElt.parentElement.parentElement.remove();
+//     }
+//     if(clickedElt.classList.contains("btn-info")) {
+//         const paraElt = clickedElt.previousElementSibling.previousElementSibling;
+//         let newUserInput = prompt("Enter new text", paraElt.textContent)
+//         if (newUserInput !== null && newUserInput.length > 0 && newUserInput !==
+//             paraElt.textContent) {
+//                 newUserInput = newUserInput.trim();
+//                 paraElt.textContent = newUserInput
+//             }
+//     }
+// })
